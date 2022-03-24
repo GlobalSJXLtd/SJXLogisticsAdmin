@@ -1,0 +1,164 @@
+﻿
+@model IEnumerable<Sjx_Mvc.ViewModels.OrderViewModel>
+@{
+    ViewData["Title"] = "User List";
+}
+
+
+<link href="~/css/site.css" rel="stylesheet" />
+<h1>Users</h1>
+
+
+
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+
+
+            <div class="card">
+                <div class="card-header">
+
+                    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+                        <!-- Left navbar links -->
+
+                        <form asp-action="GetAllUsers" asp-controller="Account" class="form-inline ml-3 navbar-nav" method="get">
+                            <div class="input-group input-group-sm">
+                                <label> Search</label>
+                                <input class="form-control form-control-navbar" type="text" placeholder="e.g Name, Mobile & Email" aria-label="Search" name="searchTerm" id="searchTerm">
+                                <div class="input-group-append">
+                                    <button class="btn btn-navbar" type="submit">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+
+
+                        <ul class="navbar-nav ml-auto">
+
+
+                            <li class="nav-item ">
+                                <button name="Submit" class="btn btn-primary"> Export</button>
+
+                            </li>
+
+                            <li><input type="button" onclick="exported()" value="Export" /></li>
+
+
+
+                        </ul>
+                    </nav>
+
+
+                </div>
+                <div class="card-body">
+                    <table id="example1" class="table table-bordered table-striped responsive-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email(s)</th>
+                                <th>Mobile</th>
+                                <th>Order-Code</th>
+                                <th>Address</th>
+                                <th rowspan="4" style="align-items:center">Operations</th>
+                            </tr>
+
+                        </thead>
+                        <tbody id="quotesRow">
+
+                            @if (Model.Count() == 0)
+                            {
+                                <tr>
+                                    <td colspan="7" class="text-center">No Record Found</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                foreach (var user in Model)
+                                {
+                                    <tr class="odd gradeX">
+                                        <td style="width:40%">@user.RecieversName</td>
+                                        <td style="width:40%">@user.CustomersEmail </td>
+                                        <td style="width:30%">@user.RecieversPhone </td>
+                                        <td style="width:30%">@user.OrderCode </td>
+                                        <td style="width:30%">@user.Address </td>
+
+                                    </tr>
+                                }
+                            }
+
+                        </tbody>
+
+                    </table>
+                    @*asp-route-Email="@user.Email.ToString()"*@
+
+
+                    @* <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>*@
+
+                    @*<script src="~/plugins/popper/popper.js"></script>
+                        <script src="~/plugins/popper/popper-utils.js"></script>*@
+                    <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+                    <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+
+
+
+
+
+<script>
+    //$(document).ready(function () {
+    //    $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+    //});
+    $(function () {
+        $("#example").dataTable();
+    })
+    $(function () {
+        $("#example1").DataTable({
+            "responsive": true,
+            "autoWidth": false,
+        });
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+    });
+
+
+    $(document).ready(function () {
+        $('#searchTerm').keydown(function () {
+            var searchTerm = $(this).val();
+            var url = 'Account/GetAllUsers?searchTerm='
+
+            $.ajax({
+                type: "Post",
+                url: url + searchTerm,
+                contentType: "html",
+                success: function (response) {
+                    $("#quotesRow").html(response);
+                }
+            })
+        })
+
+    })
+
+
+    }
+</script>
+
+
+

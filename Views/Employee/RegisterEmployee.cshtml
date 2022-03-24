@@ -1,0 +1,162 @@
+﻿@model Sjx_Mvc.ViewModels.EmployeeView
+@{
+    ViewBag.Title = "Create User";
+    var error = TempData["errorMessage"] as string;
+}
+
+
+
+<style>
+    #rcNum_div {
+        display: none;
+    }
+
+    #brokerComp_div {
+        display: none;
+    }
+</style>
+<link href="~/asset/css/style.css" rel="stylesheet" />
+<link href="~/css/site.css" rel="stylesheet" />
+<div class=" bgimg" style="margin-top:5rem">
+    <div class="row ">
+        <div class="col-md-8">
+
+            <div class="card card-primary w-75 regbg">
+                <div class="card-header bg-dark">
+                    <h3 class="card-title text-center  reg-header" style="margin-left:18rem">Employee Registration</h3>
+                </div>
+                @if (TempData["successMessage"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <h4 style="font-size: 20px; margin-left:18rem">@TempData["successMessage"]</h4>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                }
+                @if (!string.IsNullOrEmpty(error))
+                {
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <h4 style="font-size: 15px" ; class="text-center">@error</h4>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                }
+
+                <form enctype="multipart/form-data" asp-action="RegisterEmployee" asp-controller="Employee" method="post" id="register">
+                    <div class="form-group" style="align-items:center">
+                        <div class="col-lg-4">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-5 mx-4">
+                                <div class="form-group">
+                                    <label asp-for="RoleId">Account Type</label>
+                                    <select class="form-control select2bs4" asp-for="RoleId" style="width: 100%;" onchange="showDiv('brokerComp_div', 'rcNum_div', this)">
+                                        <option selected="selected">Select Account Type</option>
+                                        <option value="1">Super Admin </option>
+                                        <option value="2">Admin</option>
+                                        <option value="3">Manager</option>
+                                        <option value="4">Front-desk</option>
+                                        <option value="4">Back-end</option>
+                                        <option value="5">Rider</option>
+                                    </select>
+                                    <span asp-validation-for="RoleId" class="text-danger mx-auto"></span>
+                                </div>
+
+                            </div>
+
+                  <div class="col-md-5 mx-4">
+                                <div class="form-group">
+                                    <label asp-for="EmployeeName">FullName</label>
+                                    <input type="text" asp-for="EmployeeName" class="form-control" id="EmployeeName" placeholder="Full Name">
+                                    <span asp-validation-for="EmployeeName" class="text-danger mx-auto"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-5 mx-4">
+                                <div class="form-group">
+                                    <label asp-for="EmployeeEmail">Email</label>
+                                    <input type="text" asp-for="EmployeeEmail" class="form-control" id="password" placeholder="Email">
+                                    <span asp-validation-for="EmployeeEmail" class="text-danger mx-auto"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-5 mx-4">
+                                <div class="form-group">
+                                    <label asp-for="EmployeePhoneNumber">Employee Number</label>
+                                    <input type="number" asp-for="EmployeePhoneNumber" class="form-control" id="email" placeholder="Phone no.">
+                                    <span asp-validation-for="EmployeePhoneNumber" class="text-danger mx-auto"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-5 mx-4">
+                                <div class="form-group">
+                                    <label asp-for="GuarantorName">Guarantor Name</label>
+                                    <input type="text" asp-for="GuarantorName" class="form-control" id="phoneNumber" placeholder="Guarantor Name">
+                                    <span asp-validation-for="GuarantorName" class="text-danger mx-auto"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-5 mx-4">
+                                <div class="form-group">
+                                    <label asp-for="GuarantorEmployer">Guarantor Employer</label>
+                                    <input type="text" asp-for="GuarantorEmployer" class="form-control" id="phoneNumber" placeholder="">
+                                    <span asp-validation-for="GuarantorEmployer" class="text-danger mx-auto"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-5 mx-4">
+                                <div class="form-group">
+                                    <label asp-for="GuarantorOccupation">Guarantor Occupation</label>
+                                    <input type="text" asp-for="GuarantorOccupation" class="form-control" id="phoneNumber" placeholder="Guarantor Occupation">
+                                    <span asp-validation-for="GuarantorOccupation" class="text-danger mx-auto"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-5 mx-4">
+                                <div class="form-group">
+                                    <label asp-for="GuarantorAddress">Guarantor Address</label>
+                                    <input type="text" asp-for="GuarantorAddress" class="form-control" id="phoneNumber" placeholder="Guarantor Address">
+                                    <span asp-validation-for="GuarantorAddress" class="text-danger mx-auto"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-5 mx-4">
+                                <div class="form-group">
+                                    <label asp-for=" GuarantorPhoneNumber"> Guarantor Number</label>
+                                    <input type="text" asp-for=" GuarantorPhoneNumber" class="form-control" id="phoneNumber" placeholder=" Phone No.">
+                                    <span asp-validation-for=" GuarantorPhoneNumber" class="text-danger mx-auto"></span>
+                                </div>
+                            </div>
+                           
+                            <div class="col-md-5 mx-4">
+                                <div class="form-group">
+                                    <label asp-for="EmployeeAddress">Employee Address</label>
+                                    <input type="text" asp-for="EmployeeAddress" class="form-control" id="phoneNumber" placeholder="Employee Address">
+                                    <span asp-validation-for="EmployeeAddress" class="text-danger mx-auto"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="card-footer text-center mt-5">
+                        <button type="submit" class="btn btn-outline-dark px-5">Submit</button>
+                    </div>
+                </form>
+            </div>
+
+
+
+        </div>
+
+
+    </div>
+
+</div>
+
+<script>
+    function showDiv(brokerCompId, rcNumId, element) {
+        document.getElementById(brokerCompId).style.display = element.value == 4 ? 'block' : 'none';
+        document.getElementById(rcNumId).style.display = element.value == 4 ? 'block' : 'none';
+    }
+</script>

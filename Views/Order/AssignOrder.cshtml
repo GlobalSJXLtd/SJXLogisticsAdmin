@@ -1,0 +1,110 @@
+﻿
+@model Sjx_Mvc.ViewModels.AssignModel
+
+@{
+    ViewBag.Title = "Create Bike";
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Coronation Corporate Portal | Log in</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="~/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="~/asset/css/style.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/asset/css/style.css" rel="stylesheet" />
+</head>
+<body class=" ">
+    <div class="row">
+        <div class="col-md-12 bgimg ">
+            <div>
+                <div class="login-box">
+                    <div class="login-logo">
+                    </div>
+                    <div class="card">
+                        <div class="card-body login-card-body">
+                            @if (TempData["successMessage"] != null)
+                            {
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <span style="font-size: 15px">@TempData["successMessage"]</span>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+
+                            }
+                            @if (TempData["errorMessage"] != null)
+                            {
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <span style="font-size: 15px">@TempData["errorMessage"]</span>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            }
+
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <form asp-action="AssignOrder" asp-controller="Order" method="post">
+                                <div class="form-group">
+                                    @*<div class="col-md-12">
+                                        <input type="number" asp-for="OrderId" class="form-control" placeholder="Order Id" />
+                                    </div>
+                                    <div class="input-group mb-3">
+
+                                        <span asp-validation-for="OrderId" class="text-danger mx-auto"></span>
+                                    </div>*@
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <input type="number" asp-for="RiderOrder" class="form-control" placeholder="Rider Order" />
+                                    </div>
+                                    <div class="input-group mb-3">
+
+                                        <span asp-validation-for="RiderOrder" class="text-danger mx-auto"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group push-up-20">
+                                    <div class="mx-auto">
+                                        <input type="submit" value="Submit" class="btn btn-primary btn-block" />
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*<script src="~/plugins/jquery/jquery.min.js"></script>*@
+    <script src="~/lib/jquery/jquery.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/dist/js/adminlte.min.js"></script>
+
+
+</body>
+</html>
+
+
+
+
+

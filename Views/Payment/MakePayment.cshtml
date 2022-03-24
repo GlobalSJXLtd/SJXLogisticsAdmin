@@ -1,0 +1,140 @@
+﻿@model Sjx_Mvc.ViewModels.PaymentViewModel
+@{
+    ViewBag.Title = "Create User";
+    var error = TempData["errorMessage"] as string;
+}
+
+
+
+<style>
+    #rcNum_div {
+        display: none;
+    }
+
+    #brokerComp_div {
+        display: none;
+    }
+</style>
+<link href="~/asset/css/style.css" rel="stylesheet" />
+<link href="~/css/site.css" rel="stylesheet" />
+<div class="bgimg">
+    <div class="row ">
+        <div class="col-md-8">
+
+            <div class="card card-primary" style="margin-left:15rem; width:30rem">
+                <div class="card-header bg-dark">
+                    <h3 class="card-title text-center  reg-header" style="margin-left:12rem">Make Payment</h3>
+                </div>
+                @if (TempData["successMessage"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <h4 style="font-size: 20px; margin-left:18rem">@TempData["successMessage"]</h4>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                }
+                @if (!string.IsNullOrEmpty(error))
+                {
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <h4 style="font-size: 15px" ; class="text-center">@error</h4>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                }
+
+                <form asp-action="MakePayment" asp-controller="Payment" method="post">
+
+                    <div class="input-group mb-4">
+
+                        <label asp-for="FirstName">FirstName</label>
+
+                        <input asp-for="FirstName" placeholder="First Name" class="form-control" readonly />
+
+                        <span asp-validation-for="FirstName" class="text-danger mx-auto"></span>
+
+                    </div>
+
+                    <div class="input-group mb-3">
+
+                        <label asp-for="LastName">LastName</label>
+
+                        <input asp-for="LastName" placeholder="LastName" class="form-control" readonly />
+
+                        <span asp-validation-for="LastName" class="text-danger mx-auto"></span>
+
+
+                    </div>
+
+                    <div class="input-group mb-3">
+
+                        <label asp-for="Email">Email</label>
+
+                        <input asp-for="Email" placeholder="Email" class="form-control" readonly />
+
+                        <span asp-validation-for=" Email" class="text-danger mx-auto"></span>
+
+
+                    </div>
+                    <div class="input-group mb-3 mx-4">
+
+                        <label asp-for="Categories">categories</label>
+
+                        <input asp-for="Categories" placeholder="Categories" class="form-control" readonly />
+
+                        <span asp-validation-for=" Categories" class="text-danger mx-auto" ></span>
+
+
+                    </div>
+
+                    <div class="input-group mb-4 mx-4">
+
+                        <label asp-for="Charges">Charges</label>
+
+                        <input asp-for="Charges" placeholder="Charges" class="form-control" readonly />
+
+                    </div>
+                    <div class="input-group mb-3">
+
+                        <span asp-validation-for="Charges" class="text-danger mx-auto"></span>
+
+
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+
+                        </div>
+                        <div class="text-center mx-auto d-flex justify-content-center">
+                            <div>
+                                <button type="submit"  class="btn btn-primary text-center mb-3" style="margin-right:5rem">Pay Now</button>
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+                </form>
+
+
+            </div>
+
+
+
+        </div>
+
+
+    </div>
+
+</div>
+
+<script>
+    function showDiv(brokerCompId, rcNumId, element) {
+        document.getElementById(brokerCompId).style.display = element.value == 4 ? 'block' : 'none';
+        document.getElementById(rcNumId).style.display = element.value == 4 ? 'block' : 'none';
+    }
+</script>
+
+

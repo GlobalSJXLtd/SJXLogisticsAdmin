@@ -1,0 +1,135 @@
+﻿@model IEnumerable<Sjx_Mvc.ViewModels.ViewUserModel>
+@{
+    ViewData["Title"] = "User List";
+}
+
+<link href="~/asset/css/style.css" rel="stylesheet" />
+<link href="~/css/site.css" rel="stylesheet" />
+<h1>Users</h1>
+
+
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+
+
+            <div class="card" style="margin-left:17rem">
+                <div class="card-header">
+
+                    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+                                        </nav>
+
+
+                </div>
+
+                <div class="card-body">
+                    <table id="example1" class="table table-bordered table-striped responsive-table">
+                        <thead>
+                            <tr>
+                                <th class="text-center">S/N</th>
+                                <th class="text-center">Name</th>
+                                <th class="text-center">Email(s)</th>
+                                <th class="text-center">Mobile</th>
+                                <th class="text-center">Role</th>
+
+                                <th style="align-items:center">Operations</th>
+                            </tr>
+
+                        </thead>
+                        <tbody id="quotesRow">
+
+                            @if (Model.Count() == 0)
+                            {
+                                <tr>
+                                    <td colspan="7" class="text-center">No Record Found</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                int count = 0;
+                                foreach (var user in Model)
+                                {
+                                    count++;
+                                    <tr class="odd gradeX">
+                                        <td style="width:5%">@count</td>
+                                        <td style="width:20%" class="text-center">@user.FirstName @user.LastName</td>
+                                        <td style="width:20%" class="text-center">@user.Email </td>
+                                        <td style="width:20%" class="text-center">@user.phoneNumber</td>
+                                        <td style="width:15%" class="text-center">@user.Role</td>
+
+                                        <td style="width:15%" class="text-center">
+                                            <a asp-controller="Account" asp-action="UserDetail" asp-route-Id="@user.Id.ToString()" class="btn btn-primary m-1">Edit</a>
+                                            <a asp-controller="Account" asp-action="DeleteUser" asp-route-Id="@user.Id.ToString()" class="btn btn-danger m-1">Delete</a>
+                                        </td>
+
+                                    </tr>
+                                }
+                            }
+
+                        </tbody>
+
+                    </table>
+                    @* <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>*@
+
+
+                    <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+                    <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+
+
+
+
+
+<script>
+    
+    $(function () {
+        $("#example").dataTable();
+    })
+    $(function () {
+        $("#example1").DataTable({
+            "responsive": true,
+            "autoWidth": false,
+        });
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+    });
+
+
+    $(document).ready(function () {
+        $('#searchTerm').keydown(function () {
+            var searchTerm = $(this).val();
+            var url = 'Account/GetAllUsers?searchTerm='
+
+            $.ajax({
+                type: "Post",
+                url: url + searchTerm,
+                contentType: "html",
+                success: function (response) {
+                    $("#quotesRow").html(response);
+                }
+            })
+        })
+
+    })
+
+  
+    }
+</script>
+

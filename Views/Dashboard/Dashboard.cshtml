@@ -1,0 +1,230 @@
+﻿@model IEnumerable<Sjx_Mvc.ViewModels.RegisterViewModel>
+@{
+
+
+}
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+
+        
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Coronation Corporate Portal | Log in</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="~/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/dist/css/adminlte.min.css">
+    <link href="~/css/Dashboard.css" rel="stylesheet" />
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="\fontawesome-free-5.15.4-web\fontawesome-free-5.15.4-web\css\all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body style="margin-left: 16rem">
+    <!-- Dashboard Content -->
+    <div class="main-content" style="margin-top: 4rem ">
+        <div class="main-content-top">
+            <div class="main-content-top-profile">
+                <span>
+                    <img src="~/assets/plugins/cssbeautify/images/notify.svg" alt="notification" />
+
+                </span>
+                <span>
+
+                    <img src="~/assets/plugins/cssbeautify/images/userDash.svg" />
+                </span>
+                <ul class="navbar-nav ml-auto">
+
+
+                    <!-- User Dropdown Menu -->
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                @*<i class="icon-chevron-down ">@Html.Raw(HttpContextAccessor.HttpContext.Session.GetString("Name") != null ? HttpContextAccessor.HttpContext.Session.GetString("Name") : "User")</i>*@
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-user">
+
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="@Url.Action("LogOut", "Account")"><i class="zmdi zmdi-home"></i><span>Logout</span></a>
+                                </li>
+                            </ul>
+
+                        </li>
+
+                    }
+                    else
+                    {
+
+
+                        <li class="nav-item dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                @*<i class="icon-chevron-down ">@Html.Raw(HttpContextAccessor.HttpContext.Session.GetString("Name") != null ? HttpContextAccessor.HttpContext.Session.GetString("Name") : "User")</i>*@
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-user">
+                                <li class="divider"></li>
+                                <li>
+
+                                    <a asp-action="LogOut" asp-controller="account"><i class="fas fa-lock"></i> Logout </a>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+                </ul>
+
+                <span>
+
+                    <img src="~/assets/plugins/cssbeautify/images/dropdownIcon.svg" />
+                </span>
+            </div>
+        </div>
+        <!-- Dashboard body -->
+        <div class="main-content-bottom">
+            <div class="main-content-bottom-dashboard">
+                <div class="content-name">
+                    <div class="dashboard-icon">
+                        <img src="~/assets/plugins/cssbeautify/images/name-icon.svg" />
+                    </div>
+                    <div class="dashboard-title">
+                      <h6> @Html.Raw(HttpContextAccessor.HttpContext.Session.GetString("Email") != null ? HttpContextAccessor.HttpContext.Session.GetString("Email") : "User")</h6>
+
+                      
+
+                    </div>
+                </div>
+                <div class="content-sector">
+                    <div class="sector-title">
+                        <h5>No 57, Fatai Arobioke Street, Lekki, Lagos State.</h5>
+                        <span>See More</span>
+                    </div>
+                    <div class="sector-chart"></div>
+                    <div class="sector-legend"></div>
+                </div>
+                <div class="content-quotes">
+                    <div class="accepted-quotes">
+                        <div class="quote-text">
+                            <h5 class="quote-text-heading">Welcome to Global Sjx Ltd</h5>
+                            <div class="quote-text-number">
+                            
+                            </div>
+                        </div>
+                   
+                    </div>
+                    <div class="accepted-quotes">
+                        <div class="quote-text">
+                            <h5 class="quote-text-heading">We offer best services </h5>
+                            <div class="quote-text-number">
+                               
+                            </div>
+                        </div>
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content-bottom-table">
+            <div class="table-heading">
+                <div class="table-heading-title">Policy</div>
+                <div class="table-heading-search">
+                    <div class="table-heading-search-form">
+                        <form id="form">
+                            <span><i class="far fa-search"></i></span>
+                            <input type="search" id="query" name="q" placeholder="Search by name & email">
+                        </form>
+                    </div>
+                    <div class="table-heading-search-dropdown">
+                        <span>filter</span>
+                        <span><i class="fas fa-caret-down"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="table-content">
+                <table class="table">
+                    <thead>
+
+                        <tr>
+                           
+
+                            <th>S/N</th>
+                            <th>Insurance Type</th>
+                            <th>Proposal Name</th>
+                            <th>Email Address</th>
+                            <th>Date Insured</th>
+                            <th>Status</th>
+                            <th></th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model == null || Model.ToList().Count < 1)
+                        {
+                            <tr>
+                                <td colspan="7" class="text-center">No Records Found</td>
+                            </tr>
+                          
+
+                        }
+                        else
+                        {
+                            int count = 0;
+                            foreach (var item in Model)
+                            {
+                                count += 1;
+                                <tr class="odd gradeX">
+                                    <td>@count</td>
+                                    <td>@(!string.IsNullOrWhiteSpace(item.FirstName)?item.FirstName : "N/A") </td>
+                                    <td>@(!string.IsNullOrWhiteSpace(item.LastName)?item.LastName : "N/A") </td>
+                                    <td>@(!string.IsNullOrWhiteSpace(item.Email)?item.Email : "N/A") </td>
+                                    <td>@(item.status)  </td>
+                                    <td>@(!string.IsNullOrWhiteSpace(item.status)?item.status : "N/A") </td>
+                                    <td>...</td>
+
+                                </tr>
+                            }
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+            <!-- /.row (main row) -->
+        </div><!-- /.container-fluid -->
+</body>
+</html>
+<script type="text/javascript">
+    function toggleMenu() {
+        let navigation = document.querySelector('.navigation');
+        let toggle = document.querySelector('.toggle');
+        navigation.classList.toggle('active')
+        toggle.classList.toggle('active')
+    }
+
+
+</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    $('.users-btn').click(function () {
+        $('nav ul .users-show').toggleClass("show")
+    });
+</script>
+
+
+

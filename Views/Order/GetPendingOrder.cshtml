@@ -1,0 +1,177 @@
+﻿@model SelectList
+
+@{
+    ViewBag.Title = "Get User";
+    var error = TempData["errorMessage"] as string;
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Coronation Corporate Portal | Log in</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="~/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="~/asset/css/style.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/asset/css/style.css" rel="stylesheet" />
+</head>
+
+                </div>
+<body class=" ">
+    <div class="row">
+        <div class="col-md-12 bgimg ">
+            <div>
+                <div class="login-box">
+                    <div class="login-logo">
+                    </div>
+                    <div class="card">
+                        <div class="card-body login-card-body">
+
+                            <h2 class="card-title text-center mb-3 " style="margin-left:6rem">Assign Order</h2>
+                            @if (TempData["successMessage"] != null)
+                            {
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <span style="font-size: 15px">@TempData["successMessage"]</span>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+
+                            }
+                            @if (TempData["errorMessage"] != null)
+                            {
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <span style="font-size: 15px">@TempData["errorMessage"]</span>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            }
+
+
+                            <form asp-action="AssignOrder" asp-controller="Order" method="post">
+
+                                <div class="form-group">
+
+                                    <select class="text-center p-2" id="ddlFruits" name="Id" asp-items="Model" style="width:19rem; margin-left:1rem;height:2.5rem;">
+                                        <option class="text-center" value="0">---Select---</option>
+                                    </select>
+
+                                </div>
+                                <input type="hidden" name="FirstName" />
+                                <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+                                <script type="text/javascript">
+                                    $("body").on("change", "#ddlFruits", function () {
+                                        $("input[name=FirstName]").val($(this).find("option:selected").text());
+                                    });
+                                </script>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <label class="text-center">Rider Order</label>
+                                        <input class="text-center" type="number" name="RiderOrder" placeholder="Rider Order" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group push-up-20">
+                                    <div class="mx-auto">
+                                        <input type="submit" value="Submit" class="btn btn-primary btn-block" />
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*<script src="~/plugins/jquery/jquery.min.js"></script>*@
+    <script src="~/lib/jquery/jquery.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/dist/js/adminlte.min.js"></script>
+
+</body>
+
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

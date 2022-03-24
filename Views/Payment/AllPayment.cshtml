@@ -1,0 +1,106 @@
+﻿@model IEnumerable<Sjx_Mvc.ViewModels.PaymentViewModel>
+@{
+    <link href="~/asset/css/style.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+    <h3 class="text-center">All Payment</h3>
+}
+
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+
+
+            <div class="card" style="margin-left:17rem">
+                <div class="card-header">
+
+                    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+                        <!-- Left navbar links -->
+
+                        @using (Html.BeginForm("FilterPayment", "Payment", FormMethod.Get))
+                        {
+                            <span id="startdate">Start Date</span><input id="Text1" type="text" name="startdate" />
+                            <span id="enddate">End Date</span><input id="Text1" type="text" name="enddate" />
+                            <input id="submit" type="submit" value="Search Data"/>
+
+                        }
+
+               
+
+
+                    </nav>
+
+
+                </div>
+
+                <div class="card-body">
+                    <table id="example1" class="table table-bordered table-striped responsive-table">
+                        <thead>
+                            <tr>
+                                <th class="text-center">S/N</th>
+                                <th class="text-center">Name</th>
+                                <th class="text-center">Email(s)</th>
+                                <th class="text-center">Amount</th>
+                                <th class="text-center">TrsRef</th>
+                                <th class="text-center">PaymentDate</th>
+                                  <th class="text-center">Status</th>
+
+
+                            </tr>
+
+                        </thead>
+                        <tbody id="quotesRow">
+
+                            @if (Model.Count() == 0)
+                            {
+                                <tr>
+                                    <td colspan="7" class="text-center">No Record Found</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                int count = 0;
+                                foreach (var user in Model)
+                                {
+                                    count++;
+                        <tr class="odd gradeX">
+
+                            <td style="width:5%">@count</td>
+                            <td style="width:20%" class="text-center">@user.FirstName @user.LastName</td>
+                            <td style="width:20%" class="text-center">@user.Email </td>
+                            <td style="width:20%" class="text-center">@Convert.ToDouble(user.Charges)</td>
+                            <td style="width:15%" class="text-center">@user.TrsRef</td>
+                            <td style="width:15%" class="text-center">@user.PaymentDate</td>
+                            <td style="width:15%; color:red" class="text-center">@user.Status</td>
+
+                        </tr>
+                                }
+                            }
+
+                        </tbody>
+
+                    </table>
+                    @* <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>*@
+
+
+                    <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+                    <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+
+
+
+
+
+<script>
+
+
+

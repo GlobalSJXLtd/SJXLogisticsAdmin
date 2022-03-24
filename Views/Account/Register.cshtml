@@ -1,0 +1,129 @@
+﻿@model Sjx_Mvc.ViewModels.RegisterViewModel
+@{
+    ViewBag.Title = "Create User";
+    var error = TempData["errorMessage"] as string;
+}
+
+
+
+<style>
+    #rcNum_div {
+        display: none;
+    }
+
+    #brokerComp_div {
+        display: none;
+    }
+</style>
+<link href="~/asset/css/style.css" rel="stylesheet" />
+<link href="~/css/site.css" rel="stylesheet" />
+<div class=" bgimg ">
+    <div class="row ">
+        <div class="col-md-8">
+
+            <div class="card card-primary w-75 regbg">
+                <div class="card-header bg-dark">
+                    <h3 class="card-title text-center  reg-header" style="margin-left:18rem">User Registration</h3>
+                </div>
+                @if (TempData["successMessage"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <h4 style="font-size: 20px; margin-left:18rem">@TempData["successMessage"]</h4>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                }
+                @if (!string.IsNullOrEmpty(error))
+                {
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <h4 style="font-size: 15px" ; class="text-center">@error</h4>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                }
+
+                <form enctype="multipart/form-data" asp-action="Register" asp-controller="Account" method="post" id="register">
+                    <div class="form-group" style="align-items:center">
+                        <div class="col-lg-4">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+
+
+                            <div class="col-md-5 mx-4">
+                                <div class="form-group">
+                                    <label asp-for="FirstName">FirstName</label>
+                                    <input type="text" asp-for="FirstName" class="form-control" id="firstName" placeholder="First Name">
+                                    <span asp-validation-for="FirstName" class="text-danger mx-auto"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-5 mx-4">
+                                <div class="form-group">
+                                    <label asp-for="LastName">LastName</label>
+                                    <input type="text" asp-for="LastName" class="form-control" id="firstName" placeholder="Last Name">
+                                    <span asp-validation-for="LastName" class="text-danger mx-auto"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-5 mx-4">
+                                <div class="form-group">
+                                    <label asp-for="Email">Email</label>
+                                    <input type="text" asp-for="Email" class="form-control" id="password" placeholder="Email">
+                                    <span asp-validation-for="Email" class="text-danger mx-auto"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-5 mx-4">
+                                <div class="form-group">
+                                    <label asp-for="Address">Address</label>
+                                    <input type="text" asp-for="Address" class="form-control" id="password" placeholder="Email">
+                                    <span asp-validation-for="Address" class="text-danger mx-auto"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-5 mx-4">
+                                <div class="form-group">
+                                    <label asp-for="PhoneNumber">Phone Number</label>
+                                    <input type="number" asp-for="PhoneNumber" class="form-control" id="phoneNumber" placeholder="Phone Number">
+                                    <span asp-validation-for="PhoneNumber" class="text-danger mx-auto"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-5 mx-4">
+                                <div class="form-group">
+                                    <label asp-for="City">City</label>
+                                    <input type="number" asp-for="City" class="form-control" id="phoneNumber" placeholder="Phone Number">
+                                    <span asp-validation-for="City" class="text-danger mx-auto"></span>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+                    <div class="card-footer text-center mt-5">
+                        <button type="submit" class="btn btn-outline-dark px-5">Submit</button>
+                    </div>
+                </form>
+            </div>
+
+
+
+        </div>
+
+
+    </div>
+
+</div>
+
+<script>
+    function showDiv(brokerCompId, rcNumId, element) {
+        document.getElementById(brokerCompId).style.display = element.value == 4 ? 'block' : 'none';
+        document.getElementById(rcNumId).style.display = element.value == 4 ? 'block' : 'none';
+    }
+</script>
+
+
+

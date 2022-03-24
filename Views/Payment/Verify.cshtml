@@ -1,0 +1,73 @@
+﻿@model Sjx_Mvc.ViewModels.PaymentViewModel
+@{
+
+
+    Layout = null;
+    var error = ViewData["error"] as string;
+}
+
+
+<link href="~/css/site.css" rel="stylesheet" />
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary w-75 regbg">
+                <div class="card-header bg-dark">
+                    <h3 class="card-title text-center  reg-header" style="margin-left:18rem">Create Order</h3>
+                </div>
+                <div class="card-body login-card-body">
+          
+                     <form enctype="multipart/form-data" asp-action="VerifyLink" asp-controller="Payment" method="post" id="register">
+                                                        <div class="form-group" style="align-items:center">
+                                                            <div class="col-lg-4">
+                                                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <div class="row">
+                                                            <div class="col-md-5 mx-4">
+                                                                <div class="form-group">
+                                                                    <label asp-for="reference">Address</label>
+                                                                    <input type="text" asp-for="reference" class="form-control" id="weight" />
+                                                                    <span asp-validation-for="reference" class="text-danger mx-auto"></span>
+                                                                    <input type="text" asp-for="TrsRef" class="form-control" id="weight" />
+                                                                    <span asp-validation-for="TrsRef" class="text-danger mx-auto"></span>
+                                                                </div>
+                                                                </div>
+
+
+                                                            </div>
+                                                        </div>
+                                             
+
+                                                 <div class="card-footer text-center mt-5">
+                                                            <button type="submit" class="btn btn-outline-dark px-5">Verify</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <!-- /.card -->
+
+
+                                         
+                                   
+                            </button>
+                        </div>
+                
+                </div>
+                <!-- /.card -->
+
+
+            </div>
+            <!--/.col (left) -->
+
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+
+    <script>
+    function showDiv(brokerCompId, rcNumId, element) {
+        document.getElementById(brokerCompId).style.display = element.value == 4 ? 'block' : 'none';
+        document.getElementById(rcNumId).style.display = element.value == 4 ? 'block' : 'none';
+    }
+    </script>
